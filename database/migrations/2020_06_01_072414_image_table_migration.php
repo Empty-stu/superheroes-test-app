@@ -17,7 +17,7 @@ class ImageTableMigration extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('superhero_id')->unsigned();
             $table->foreign('superhero_id')->references('id')->on('superheroes');
-            $table->string('image_name')->default('default_avatar.png');
+            $table->string('image_path');
         });
     }
 
