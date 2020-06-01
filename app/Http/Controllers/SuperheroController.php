@@ -24,6 +24,11 @@ class SuperheroController extends Controller
         return view('create_superhero');
     }
 
+    public function getHeroList() {
+
+        return view('home', ['heroes' => []]);
+    }
+
     public function createSuperhero(Request $request) {
         $superheroId = $this->superheroRepository->createSuperhero($request->input('nickname'), $request->input('realName'), $request->input('description'), $request->input('catchphrase'));
         $this->superpowerRepository->setSuperheroPowers($superheroId, $request->input('superpowers'));

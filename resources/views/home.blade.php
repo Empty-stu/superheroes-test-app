@@ -10,6 +10,7 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
         <!-- Styles -->
+        <link rel="stylesheet" href="/css/bootstrap.css">
         <style>
             html, body {
                 background-color: #fff;
@@ -34,18 +35,8 @@
                 position: relative;
             }
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
             .content {
                 text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
             }
 
             .links > a {
@@ -61,39 +52,33 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            .h1 {
+                font-size: 42px;
+            }
+
+            .hero-list-wrapper {
+                border: 1px solid #636b6f;
+                border-radius: 5px;
+            }
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
+        <div class="flex-center position-ref">
+            @include('header');
+            <div class="mt-3 content">
+                @if(count($heroes) != 0)
+                    <div class="h1 m-b-md">
+                        Hero list
+                    </div>
+                    <div class="hero-list-wrapper">
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+                    </div>
+                @else
+                    <div class="h1 m-b-md">
+                        There is no heroes in our world yet ((
+                    </div>
+                @endif
             </div>
         </div>
     </body>

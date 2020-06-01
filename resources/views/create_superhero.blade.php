@@ -21,10 +21,6 @@
                 margin: 0;
             }
 
-            .full-height {
-                height: 100vh;
-            }
-
             .flex-center {
                 align-items: center;
                 display: flex;
@@ -35,18 +31,8 @@
                 position: relative;
             }
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
             .content {
                 text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
             }
 
             .h1 {
@@ -82,8 +68,10 @@
         </style>
     </head>
     <body>
+
         <div class="flex-center position-ref">
-            <div class="content">
+            @include('header');
+            <div class="mt-3 content">
                 @if(session()->has('successMessage'))
                     <div class="mt-3 alert alert-success">
                         {{ session()->get('successMessage') }}
