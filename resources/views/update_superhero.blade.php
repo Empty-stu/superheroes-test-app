@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Create superhero</title>
+        <title>Update {{$hero->nickname}}</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -53,9 +53,12 @@
                 margin-bottom: 30px;
             }
 
-            .create-form-wrapper {
+            .update-form-wrapper {
                 border: 1px solid #636b6f;
                 border-radius: 5px;
+                width: 420px;
+                margin-left: auto;
+                margin-right: auto;
             }
 
             .submit-button {
@@ -64,6 +67,20 @@
                 color: white;
                 background-color: darkcyan;
                 border-radius: 5px;
+            }
+
+            .table {
+                width: 90%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .table-raw {
+                width: 50%;
+            }
+
+            .delete-btn {
+                height: 18px;
             }
         </style>
     </head>
@@ -78,55 +95,86 @@
                     </div>
                 @endif
                 <div class="h1 m-b-md">
-                    Create new super hero
+                    Update {{$hero->nickname}}
                 </div>
-                <div class="create-form-wrapper">
-                    <form method="POST" enctype="multipart/form-data" action="/create-superhero">
+                <div class="update-form-wrapper">
+                    <form method="POST" enctype="multipart/form-data" action="/update/{{$hero->id}}">
                         @csrf
                         <p>
                             <b>
                                 Nickname
                             </b>
                             <br>
-                            <input id="nickname" name="nickname" type="text" size="40" maxlength="50" required>
+                            <input id="nickname" name="nickname" type="text" size="40" maxlength="50" value="{{$hero->nickname}}" required>
                         </p>
                         <p>
                             <b>
                                 Realname
                             </b>
                             <br>
-                            <input name="realName" type="text" size="40" maxlength="50" required>
+                            <input name="realName" type="text" size="40" maxlength="50" value="{{$hero->real_name}}" required>
                         </p>
                         <p>
                             <b>
                                 Description
                             </b>
                             <br>
-                            <textarea name="description" rows="10" cols="40" maxlength="65000" style="resize: vertical" required></textarea>
+                            <textarea name="description" rows="10" cols="40" maxlength="65000" style="resize: vertical" required>{{$hero->origin_description}}</textarea>
                         </p>
                         <p>
                             <b>
                                 Superpowers
                             </b>
                             <br>
-                            <textarea name="superpowers" rows="10" cols="40" maxlength="65000" style="resize: vertical" placeholder="First superpower\nSecond superpower\nThird superpower\n..." required></textarea>
+                            <table class="table">
+                                @foreach($hero->superpowers as $superpower)
+                                    <tr class="table-raw">
+                                        <td>
+                                            {{$superpower->superpower_name}}
+                                        </td>
+                                        <td>
+                                            <a href="/superpower/delete/{{$superpower->id}}">
+                                                <img class="delete-btn" src="/img/close.png">
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </table>
+                            <br>
+                            <textarea name="superpowers" rows="10" cols="40" maxlength="65000" style="resize: vertical" placeholder="First new superpower\nSecond new superpower\nThird new superpower\n..."></textarea>
                         </p>
                         <p>
                             <b>
                                 Catch phrase
                             </b>
                             <br>
-                            <input name="catchphrase" type="text" size="40" maxlength="100" required>
+                            <input name="catchphrase" type="text" size="40" maxlength="100" value="{{$hero->catch_phrase}}" required>
                         </p>
                         <p>
                             <b>
                                 Pictures
                             </b>
                             <br>
+                            <table class="table">
+                                @foreach($hero->images as $image)
+                                    <tr class="table-raw">
+                                        <td>
+                                            <?php $imagePathPartsArray = explode("/", $image->image_path) ?>
+                                            {{end($imagePathPartsArray)}}
+                                        </td>
+                                        <td>
+                                            <a href="/image/delete/{{$image->id}}">
+                                                <img class="delete-btn" src="/img/close.png">
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </table>
+                            <br>
                             <input multiple="multiple" name="heroPictures[]" type="file" size="40" accept="image/x-png,image/gif,image/jpeg">
                         </p>
                         <p>
-                            <input class="submit-button" type="submit" value="Create">
+                            <input class="submit-button" type="submit" value="Update">
                         </p>
                     </form>
                 </div>

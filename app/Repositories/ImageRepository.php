@@ -27,10 +27,10 @@ class ImageRepository implements Contracts\ImageRepositoryInterface
 
     public function removeImage($imageId)
     {
-        // TODO: Implement removeImage() method.
+        $this->imageModel->findOrFail($imageId)->delete();
     }
 
-    public function setSuperheroImages($superheroId, $images)
+    public function addSuperheroImages($superheroId, $images)
     {
         foreach ($images as $heroImage) {
             $this->addImage($superheroId, $heroImage);

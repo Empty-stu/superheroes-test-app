@@ -39,11 +39,16 @@ class SuperheroRepository implements Contracts\SuperheroRepositoryInterface
 
     public function updateSuperhero($superheroId, $nickname, $realName, $description, $catchPhrase)
     {
-        // TODO: Implement updateSuperhero() method.
+        $superhero = $this->superheroModel->find($superheroId);
+        $superhero->nickname = $nickname;
+        $superhero->real_name = $realName;
+        $superhero->origin_description = $description;
+        $superhero->catch_phrase = $catchPhrase;
+        $superhero->save();
     }
 
-    public function deleteSuperHero($superheroId)
+    public function deleteSuperhero($superheroId)
     {
-        // TODO: Implement deleteSuperHero() method.
+        $this->superheroModel->findOrFail($superheroId)->delete();
     }
 }

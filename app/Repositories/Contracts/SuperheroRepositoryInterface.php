@@ -10,5 +10,5 @@ interface SuperheroRepositoryInterface
     public function getAllSuperheroes();
     public function getSuperhero($id);
     public function updateSuperhero($superheroId, $nickname, $realName, $description, $catchPhrase);
-    public function deleteSuperHero($superheroId);
+    public function deleteSuperhero($superheroId);
 }

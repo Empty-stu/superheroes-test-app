@@ -104,6 +104,11 @@
         <div class="flex-center position-ref">
             @include('header')
             <div class="mt-3 content">
+                @if(session()->has('successMessage'))
+                    <div class="mt-3 alert alert-success">
+                        {{ session()->get('successMessage') }}
+                    </div>
+                @endif
                 @if(count($heroes) != 0)
                     <div class="h1 m-b-md">
                         Hero list

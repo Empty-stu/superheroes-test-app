@@ -29,6 +29,12 @@ class SuperheroController extends Controller
         return view('create_superhero');
     }
 
+    public function getUpdateForm($id)
+    {
+        $hero = $this->superheroRepository->getSuperhero($id);
+        return view('update_superhero', ['hero' => $hero]);
+    }
+
     public function getHeroList()
     {
         $heroList = $this->superheroRepository->getAllSuperheroes();
@@ -44,8 +50,38 @@ class SuperheroController extends Controller
     public function createSuperhero(Request $request)
     {
         $superheroId = $this->superheroRepository->createSuperhero($request->input('nickname'), $request->input('realName'), $request->input('description'), $request->input('catchphrase'));
-        $this->superpowerRepository->setSuperheroPowers($superheroId, $request->input('superpowers'));
-        $this->imageRepository->setSuperheroImages($superheroId, $request->heroPictures);
+        $this->superpowerRepository->addSuperheroPowers($superheroId, $request->input('superpowers'));
+        $this->imageRepository->addSuperheroImages($superheroId, $request->heroPictures);
         return redirect()->back()->with('successMessage', 'Great, the hero been created!');
+    }
+
+    public function updateSuperhero(Request $request, $id)
+    {
+        $this->superheroRepository->updateSuperhero($id, $request->input('nickname'), $request->input('realName'), $request->input('description'), $request->input('catchphrase'));
+        if(!is_null($request->input('superpowers'))) {
+            $this->superpowerRepository->addSuperheroPowers($id, $request->input('superpowers'));
+        }
+        if(!is_null($request->heroPictures)) {
+            $this->imageRepository->addSuperheroImages($id, $request->heroPictures);
+        }
+        return redirect()->back()->with('successMessage', 'Great, the hero been updated!');
+    }
+
+    public function deleteSuperpower($id)
+    {
+        $this->superpowerRepository->removeSuperpower($id);
+        return redirect()->back()->with('successMessage', 'Great, the superpower been deleted!');
+    }
+
+    public function deleteImage($id)
+    {
+        $this->imageRepository->removeImage($id);
+        return redirect()->back()->with('successMessage', 'Great, the superpower been deleted!');
+    }
+
+    public function deleteSuperhero($id)
+    {
+        $this->superheroRepository->deleteSuperhero($id);
+        return redirect('/')->with('successMessage', 'Great, the superhero been deleted!');
     }
 }

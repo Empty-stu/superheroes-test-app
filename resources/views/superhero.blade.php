@@ -57,6 +57,8 @@
                 border: 1px solid #636b6f;
                 border-radius: 5px;
                 width: 300px;
+                margin-left: auto;
+                margin-right: auto;
             }
 
             .avatar {
@@ -97,6 +99,8 @@
                 width: 300px;
                 display: flex;
                 flex-direction: row;
+                margin-left: auto;
+                margin-right: auto;
             }
 
             .buttons-wrapper > a {

@@ -20,3 +20,13 @@ Route::get('/create-superhero', 'SuperheroController@getCreateForm');
 Route::post('/create-superhero', 'SuperheroController@createSuperhero');
 
 Route::get('/hero/{id}', 'SuperheroController@getCompleteSuperheroInfo');
+
+Route::get('/update/{id}', 'SuperheroController@getUpdateForm');
+
+Route::post('/update/{id}', 'SuperheroController@updateSuperhero');
+
+Route::get('/delete/{id}', 'SuperheroController@deleteSuperhero');
+
+Route::get('/superpower/delete/{id}', 'SuperheroController@deleteSuperpower');
+
+Route::get('/image/delete/{id}', 'SuperheroController@deleteImage');

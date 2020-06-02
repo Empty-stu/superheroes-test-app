@@ -23,7 +23,13 @@ class SuperpowerRepository implements Contracts\SuperpowerRepositoryInterface
         $superpower->save();
     }
 
-    public function setSuperheroPowers($superheroId, $superpowersString)
+
+    public function removeSuperpower($superpowerId)
+    {
+        $this->superPowerModel->findOrFail($superpowerId)->delete();
+    }
+
+    public function addSuperheroPowers($superheroId, $superpowersString)
     {
         $superpowersArray = splitMultilineStringOnArrayOfStrings($superpowersString);
         foreach ($superpowersArray as $superpower) {

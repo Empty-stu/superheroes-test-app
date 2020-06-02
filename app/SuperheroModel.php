@@ -14,4 +14,17 @@ class SuperheroModel extends Model
     public function superpowers() {
         return $this->hasMany(SuperpowerModel::class, 'superhero_id');
     }
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($superhero) {
+            foreach ($superhero->superpowers as $superpower) {
+                $superpower->delete();
+            }
+            foreach ($superhero->images as $image) {
+                $image->delete();
+            }
+        });
+    }
 }
