@@ -12,11 +12,11 @@
 - php artisan migrate
 - php artisan serve
 
-###To tun unit tests execute
+### To tun unit tests execute
 
 - npm run run-unit-test
 
-##Assumptions
+## Assumptions
 Не стал писать Unit тесты для функцианальности репозитоиев.
 В случае тестирования select запросов путем подмены модели mock-ами, 
 тест всегда будет завершаться удачно. 
