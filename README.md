@@ -2,6 +2,8 @@
 
 ## Please complete this steps to run app
 
+- git clone git@github.com:Empty-stu/superheroes-test-app.git
+- cd superheroesApp/
 - cp .env.example .env
 - composer install
 - npm install
