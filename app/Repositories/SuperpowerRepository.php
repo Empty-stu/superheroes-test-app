@@ -31,6 +31,9 @@ class SuperpowerRepository implements Contracts\SuperpowerRepositoryInterface
 
     public function addSuperheroPowers($superheroId, $superpowersString)
     {
+        if($superpowersString === null) {
+            return;
+        }
         $superpowersArray = splitMultilineStringOnArrayOfStrings($superpowersString);
         foreach ($superpowersArray as $superpower) {
             $this->addSuperpower($superheroId, $superpower);

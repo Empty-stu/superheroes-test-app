@@ -32,6 +32,9 @@ class ImageRepository implements Contracts\ImageRepositoryInterface
 
     public function addSuperheroImages($superheroId, $images)
     {
+        if($images === null) {
+            return;
+        }
         foreach ($images as $heroImage) {
             $this->addImage($superheroId, $heroImage);
         }

@@ -58,12 +58,8 @@ class SuperheroController extends Controller
     public function updateSuperhero(Request $request, $id)
     {
         $this->superheroRepository->updateSuperhero($id, $request->input('nickname'), $request->input('realName'), $request->input('description'), $request->input('catchphrase'));
-        if(!is_null($request->input('superpowers'))) {
-            $this->superpowerRepository->addSuperheroPowers($id, $request->input('superpowers'));
-        }
-        if(!is_null($request->heroPictures)) {
-            $this->imageRepository->addSuperheroImages($id, $request->heroPictures);
-        }
+        $this->superpowerRepository->addSuperheroPowers($id, $request->input('superpowers'));
+        $this->imageRepository->addSuperheroImages($id, $request->heroPictures);
         return redirect()->back()->with('successMessage', 'Great, the hero been updated!');
     }
 
