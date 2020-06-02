@@ -3,7 +3,7 @@
 ## Please complete this steps to run app
 
 - git clone git@github.com:Empty-stu/superheroes-test-app.git
-- cd superheroesApp/
+- cd superheroes-test-app/
 - cp .env.example .env
 - composer install
 - npm install
