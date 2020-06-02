@@ -31,6 +31,12 @@ class SuperheroRepository implements Contracts\SuperheroRepositoryInterface
         return $this->superheroModel->simplePaginate(5);
     }
 
+
+    public function getSuperhero($id)
+    {
+        return $this->superheroModel->findOrFail($id);
+    }
+
     public function updateSuperhero($superheroId, $nickname, $realName, $description, $catchPhrase)
     {
         // TODO: Implement updateSuperhero() method.

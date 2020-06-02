@@ -69,6 +69,9 @@
 
             .hero-list-raw {
                 height: 80px;
+            }
+
+            .hero-list-raw:not(:last-of-type) {
                 border-bottom: 1px solid #636b6f;
             }
 

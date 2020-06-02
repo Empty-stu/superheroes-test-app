@@ -37,7 +37,8 @@ class SuperheroController extends Controller
 
     public function getCompleteSuperheroInfo($id)
     {
-        dd($id);
+        $hero = $this->superheroRepository->getSuperhero($id);
+        return view('superhero', ['hero' => $hero]);
     }
 
     public function createSuperhero(Request $request)
