@@ -18,3 +18,5 @@ Route::get('/', 'SuperheroController@getHeroList');
 Route::get('/create-superhero', 'SuperheroController@getCreateForm');
 
 Route::post('/create-superhero', 'SuperheroController@createSuperhero');
+
+Route::get('/hero/{id}', 'SuperheroController@getCompleteSuperheroInfo');

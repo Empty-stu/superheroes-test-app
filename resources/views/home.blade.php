@@ -60,19 +60,69 @@
             .hero-list-wrapper {
                 border: 1px solid #636b6f;
                 border-radius: 5px;
+                width: 300px;
+            }
+
+            .hero-list-table {
+                width: 100%;
+            }
+
+            .hero-list-raw {
+                height: 80px;
+                border-bottom: 1px solid #636b6f;
+            }
+
+            .hero-avatar-cell {
+                width: 30%;
+            }
+
+            .hero-nickname-cell {
+                width: 70%;
+            }
+
+            .hero-avatar {
+                border-radius: 35px;
+                width: 70px;
+                height: 70px;
+                object-fit: cover;
+            }
+            .pagination-wrapper {
+                width: 300px;
+            }
+            .pagination {
+                width: 300px !important;
+            }
+            .page-item {
+                width: 150px !important;
             }
         </style>
     </head>
     <body>
         <div class="flex-center position-ref">
-            @include('header');
+            @include('header')
             <div class="mt-3 content">
                 @if(count($heroes) != 0)
                     <div class="h1 m-b-md">
                         Hero list
                     </div>
                     <div class="hero-list-wrapper">
-
+                        <table class="hero-list-table">
+                            @foreach($heroes as $hero)
+                                <tr class="hero-list-raw">
+                                    <td class="hero-avatar-cell">
+                                        <img class="hero-avatar" src="{{count($hero->images) != 0 ? $hero->images[0]->image_path : '/img/default_hero_avatar.jpg'}}">
+                                    </td>
+                                    <td class="hero-nickname-cell">
+                                        <a href="/hero/{{$hero->id}}">
+                                            {{$hero->nickname}}
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </table>
+                    </div>
+                    <div class="mt-3 pagination-wrapper">
+                        {{$heroes->links()}}
                     </div>
                 @else
                     <div class="h1 m-b-md">
